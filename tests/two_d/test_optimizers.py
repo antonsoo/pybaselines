@@ -284,7 +284,7 @@ class TestIndividualAxes(OptimizersTester, OptimizerInputWeightsMixin):
             z, data = z[order], data[:, order]
         original = data.copy()
         baseline, params = self.algorithm_base(x, z).individual_axes(
-            data, axes=axes, method='poly', method_kwargs={'poly_order': 2}
+            data, axes=axes, method='modpoly', method_kwargs={'poly_order': 2, 'max_iter': 1}
         )
         assert_allclose(baseline, data, rtol=1e-12, atol=1e-12)
         assert_array_equal(data, original)
